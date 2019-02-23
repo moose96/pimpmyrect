@@ -1,63 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './App.css';
+import Element from './Element.js';
+import EditorPanel from './EditorPanel.js';
 
-class Editor extends React.Component {
-	constructor(props) {
-		super(props);
-		
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleColorChange = this.handleColorChange.bind(this);
-		this.handleSizeChange = this.handleSizeChange.bind(this);
-		this.handleBorderChange = this.handleBorderChange.bind(this);
-		
-		this.state = this.props.style;
+import leftArrowImg from './img/left-arrow.svg';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+	this.handleValueChange = this.handleValueChange.bind(this);
+	this.handleCloseEvent = this.handleCloseEvent.bind(this);
+	
+	this.state = {
+		style: this.props.element.style
 	}
-	
-	handleSubmit(e) {
-		alert('submit!');
-		e.preventDefault();
-	}
-	
-	handleColorChange(e) {
-		this.setState({backgroundColor: e.target.value});
-		this.props.onValueChange(this.state);
-	}
-	
-	handleSizeChange(e) {
-		this.setState({
-			width: parseInt(e.target.value),
-			height: parseInt(e.target.value)});
-			
-		this.props.onValueChange(this.state);
-	}
-	
-	handleBorderChange(e) {
-		this.setState({borderRadius: parseInt(e.target.value)});
-		this.props.onValueChange(this.state);
-	} 
-	
-	render() {
-		return (
-			<div className="editor">
-				<form className="editorForm" onSubmit={this.handleSubmit}>
-					<div className="formGroupper">
-						<p>Background color: </p>
-						<input type="color" name="backgroundColor" value={this.state.backgroundColor} onChange={this.handleColorChange}/>
-					</div>
-				
-					<div className="formGroupper">
-						<p>Size: </p>
-						<input type="number" name="size" min="0" max="200" value={parseInt(this.state.width)} onChange={this.handleSizeChange}/>
-					</div>
-				
-					<div className="formGroupper">
-						<p>Border radius: </p>
-						<input type="range" name="borderRadius" min="0" max={this.state.width/2} value={parseInt(this.state.borderRadius)} onChange={this.handleBorderChange}/>
-					</div>
-					<input type="submit" value="Save" />
-				</form>
+  }
+  
+  handleValueChange(value) {
+	  this.setState({style: value});
+  }
+  
+  handleCloseEvent(e) {
+	  this.props.onClose(e);
+	  e.preventDefault();
+  }
+  
+  render() {
+    return (
+		<div className="app">
+			<div className="menu">
+				<a href="" className="returnButton" onClick={this.handleCloseEvent}><img alt="wstecz" src={leftArrowImg} /></a>
 			</div>
-		);
-	}
+			<div className="output">
+				<Element style={this.state.style} />
+			</div>
+			<EditorPanel onValueChange={this.handleValueChange} style={this.state.style} onSubmit={this.handleCloseEvent}/>
+		</div>
+    );
+  }
 }
 
-export default Editor;
+export default App;

@@ -1,37 +1,99 @@
-.app
+html 
 {
-	background-color: #0045ff;
+	height: 100%;
+}
+
+body
+{
+	height: 100%;
+}
+
+#root
+{
 	display: flex;
 	flex-direction: column;
+	min-height: 100%;
+}
+
+.app
+{
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	/*align-items: center;*/
+}
+
+header
+{
+	background-color: #0000ff;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	box-shadow: 0px 2px 3px 0px;
 }
 
 .output
 {
 	display: flex;
-	flex: 10;
 	justify-content:center;
 	align-items:center;
+	flex: 1;
 }
 
 .element
 {
+	display: flex;
+	justify-content: center;
+	margin: 5% 10% 5% 10%;
+	transition: transform 1s;
+	position: relative;
+}
+
+.element:hover
+{
+	transform: translateY(-5px);
+}
+
+.returnButton img
+{
+	width:2%;
 }
 
 .closeButton
 {
-	display: none;
+	width: 20px;
+	height: 20px;
+	/*border-radius: 10px 10px 10px 10px;*/
+	position: absolute;
+	right: -10px;
+	top: -10px;
+}
+
+.closeButton.hidden
+{
+	opacity: 0;
+	transition: opacity 0.5s;
 }
 
 .editor
 {
 	display:flex;
 	justify-content: center;
-	flex: 1;
+	/*border-radius: 5px 5px 5px 5px;
+	box-shadow: 1px 1px 6px 0px;*/
 }
 
 .editorForm
 {
-	
+	display: flex;
+	flex-direction: column;
+}
+
+.editorForm input[type="submit"]
+{
+	width: 30%;
+	margin: auto;
 }
 
 .formGroupper
@@ -54,4 +116,21 @@
 .formGroupper input
 {
 	flex: 1;
+}
+
+.gallery
+{
+	display: flex;
+	flex-wrap: wrap;
+	width: 80%;
+	height: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	/*border-radius: 5px 5px 5px 5px;
+	box-shadow: 1px 1px 6px 0px;*/
+}
+
+.menu
+{
+	width: 100%;
 }
