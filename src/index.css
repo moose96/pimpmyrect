@@ -1,3 +1,9 @@
+html,
+body
+{
+	height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,4 +17,29 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root
+{
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+button,
+input[type="submit"]
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-image: linear-gradient(rgb(230,230,230),rgb(190,190,190));
+	box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.4);
+	border: 0;
+}
+
+button:hover,
+input[type="submit"]:hover
+{
+	background-image: linear-gradient(rgb(240,240,240),rgb(200,200,200));
 }

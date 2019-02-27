@@ -1,23 +1,6 @@
-html 
-{
-	height: 100%;
-}
-
-body
-{
-	height: 100%;
-}
-
-#root
-{
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
-}
-
 .app
 {
-	background-color: #ffffff;
+	background-color: #fafafa;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
@@ -26,96 +9,13 @@ body
 
 header
 {
-	background-color: #0000ff;
+	background-color: #ffffff;
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	box-shadow: 0px 2px 3px 0px;
-}
-
-.output
-{
-	display: flex;
-	justify-content:center;
-	align-items:center;
-	flex: 1;
-}
-
-.element
-{
-	display: flex;
-	justify-content: center;
-	margin: 5% 10% 5% 10%;
-	transition: transform 1s;
-	position: relative;
-}
-
-.element:hover
-{
-	transform: translateY(-5px);
-}
-
-.returnButton img
-{
-	width:2%;
-}
-
-.closeButton
-{
-	width: 20px;
-	height: 20px;
-	/*border-radius: 10px 10px 10px 10px;*/
-	position: absolute;
-	right: -10px;
-	top: -10px;
-}
-
-.closeButton.hidden
-{
-	opacity: 0;
-	transition: opacity 0.5s;
-}
-
-.editor
-{
-	display:flex;
-	justify-content: center;
-	/*border-radius: 5px 5px 5px 5px;
-	box-shadow: 1px 1px 6px 0px;*/
-}
-
-.editorForm
-{
-	display: flex;
-	flex-direction: column;
-}
-
-.editorForm input[type="submit"]
-{
-	width: 30%;
-	margin: auto;
-}
-
-.formGroupper
-{
-	display: flex;
-	margin-bottom: 10px;
-}
-
-.formGroupper>*
-{
-	display: inline-flex;
-}
-
-.formGroupper p
-{
-	flex: 2;
-	margin: 0 0 0 0;
-}
-
-.formGroupper input
-{
-	flex: 1;
+	box-shadow: 0px 2px 3px 0px rgba(0,198,255,0.4);
+	z-index: 100;
+	/* position: fixed; */
 }
 
 .gallery
@@ -123,14 +23,45 @@ header
 	display: flex;
 	flex-wrap: wrap;
 	width: 80%;
-	height: 80%;
+	height: 100%;
+	flex:1;
 	margin-left: auto;
 	margin-right: auto;
-	/*border-radius: 5px 5px 5px 5px;
-	box-shadow: 1px 1px 6px 0px;*/
+	/*border-radius: 5px 5px 5px 5px;*/
+	box-shadow: 0px -2px 16px 0px rgba(0,0,0,0.2);
+	background-color: #fefefe;
 }
 
-.menu
+.gallery.list
+{
+	flex-direction: column;
+}
+
+.galleryElement
+{
+	width: 33%;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* background-image: linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.2)); */
+	/* box-shadow: 0 0 8px -3px rgba(0,0,0,0.2) inset; */
+}
+
+.toolbar
 {
 	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	border-bottom: 2px solid rgba(120,120,120,0.3);
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.toolbar *
+{
+	margin-right: 20px;
+	height: 50%;
 }

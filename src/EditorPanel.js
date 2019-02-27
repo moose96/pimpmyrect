@@ -3,76 +3,61 @@ import React from 'react';
 class EditorPanel extends React.Component {
 	constructor(props) {
 		super(props);
-		
+		this.handleValueChange = this.handleValueChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleColorChange = this.handleColorChange.bind(this);
-		this.handleSizeChange = this.handleSizeChange.bind(this);
-		this.handleBorderChange = this.handleBorderChange.bind(this);
 		
 		this.state = this.props.style;
 	}
 	
 	handleSubmit(e) {
-		fetch('http://localhost/learning/react-zadanka/pimpmyrect/public/dbservice.php', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(this.state)
-		})
-			.then(function(resp){
-				console.log(resp.text());
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
 		e.preventDefault();
 		this.props.onSubmit(e);
 	}
 	
-	handleColorChange(e) {
-		this.setState({backgroundColor: e.target.value});
-		this.props.onValueChange(this.state);
-	}
-	
-	handleSizeChange(e) {
-    if(e.target.name==='width') {
-      this.setState({width: parseInt(e.target.value)});
-    } else if (e.target.name==='height') {
-      this.setState({height: parseInt(e.target.value)});
-    }
+	handleValueChange(e) {
+		let newStyle=this.props.style;
+		
+		//console.log(newStyle);	
+		
+		if(e.target.name==='backgroundColor') {
+			this.setState({backgroundColor: e.target.value});
+			//newStyle.backgroundColor = e.target.value;
+		} else if(e.target.name==='width') {
+			this.setState({width: parseInt(e.target.value)});
+			//newStyle.width = parseInt(e.target.value);
+		} else if (e.target.name==='height') {
+			this.setState({height: parseInt(e.target.value)});
+			//newStyle.height = parseInt(e.target.value);
+		} else if(e.target.name==='borderRadius') {
+			this.setState({borderRadius: parseInt(e.target.value)});
+			//newStyle.borderRadius = parseInt(e.target.value);
+		}
 			
 		this.props.onValueChange(this.state);
 	}
-	
-	handleBorderChange(e) {
-		this.setState({borderRadius: parseInt(e.target.value)});
-		this.props.onValueChange(this.state);
-	} 
-	
+
 	render() {
 		return (
 			<div className="editor">
 				<form className="editorForm" onSubmit={this.handleSubmit}>
 					<div className="formGroupper">
 						<p>Background color: </p>
-						<input type="color" name="backgroundColor" value={this.state.backgroundColor} onChange={this.handleColorChange}/>
+						<input type="color" name="backgroundColor" value={this.state.backgroundColor} onChange={this.handleValueChange}/>
 					</div>
 				
 					<div className="formGroupper">
 						<p>Width: </p>
-						<input type="number" name="width" min="0" max="200" value={parseInt(this.state.width)} onChange={this.handleSizeChange}/>
+						<input type="number" name="width" min="0" max="800" value={parseInt(this.state.width)} onChange={this.handleValueChange}/>
 					</div>
           
-          <div className="formGroupper">
+					<div className="formGroupper">
 						<p>Height: </p>
-						<input type="number" name="height" min="0" max="200" value={parseInt(this.state.height)} onChange={this.handleSizeChange}/>
+						<input type="number" name="height" min="0" max="800" value={parseInt(this.state.height)} onChange={this.handleValueChange}/>
 					</div>
 				
 					<div className="formGroupper">
 						<p>Border radius: </p>
-						<input type="range" name="borderRadius" min="0" max={this.state.width/2} value={parseInt(this.state.borderRadius)} onChange={this.handleBorderChange}/>
+						<input type="range" name="borderRadius" min="0" max={this.state.width/2} value={parseInt(this.state.borderRadius)} onChange={this.handleValueChange}/>
 					</div>
 					<input type="submit" value="Save" />
 				</form>

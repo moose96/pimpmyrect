@@ -1,0 +1,61 @@
+.element
+{
+	display: flex;
+	justify-content: center;
+	margin: 5% 10% 5% 10%;
+	transition: transform 1s;
+	position: relative;
+	z-index: 0;
+}
+
+.element.new
+{
+	background-color: '#c0c0c0';
+	width: 100;
+	height: 100;
+	border-radius: 0;
+}
+
+.closeButton
+{
+	width: 20px;
+	height: 20px;
+	border-radius: 10px 10px 10px 10px;
+	position: absolute;
+	right: -10px;
+	top: -10px;
+}
+
+.closeButton:hover
+{
+	background-image: linear-gradient(rgb(240,240,240),rgb(200,200,200));
+}
+
+.closeButton:active
+{
+	background-image: linear-gradient(bottom to top,rgb(230,230,230),rgb(190,190,190));
+}
+
+.elementInfo
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+	background-image: linear-gradient(rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 33%,rgba(255,255,255,0) 66% ,rgba(255,255,255,0.5) 100%);
+	font-size: 1em;
+	color: white;
+	cursor: pointer;
+}
+
+.hidden
+{
+	opacity: 0;
+	transition: opacity 0.5s;
+	cursor: default;
+}
