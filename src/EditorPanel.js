@@ -5,9 +5,8 @@ class EditorPanel extends React.Component {
 		super(props);
 		this.handleValueChange = this.handleValueChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		
-		this.state = this.props.style;
 	}
+  
 	
 	handleSubmit(e) {
 		e.preventDefault();
@@ -15,51 +14,33 @@ class EditorPanel extends React.Component {
 	}
 	
 	handleValueChange(e) {
-		let newStyle=this.props.style;
-		
-		//console.log(newStyle);	
-		
-		if(e.target.name==='backgroundColor') {
-			this.setState({backgroundColor: e.target.value});
-			//newStyle.backgroundColor = e.target.value;
-		} else if(e.target.name==='width') {
-			this.setState({width: parseInt(e.target.value)});
-			//newStyle.width = parseInt(e.target.value);
-		} else if (e.target.name==='height') {
-			this.setState({height: parseInt(e.target.value)});
-			//newStyle.height = parseInt(e.target.value);
-		} else if(e.target.name==='borderRadius') {
-			this.setState({borderRadius: parseInt(e.target.value)});
-			//newStyle.borderRadius = parseInt(e.target.value);
-		}
-			
-		this.props.onValueChange(this.state);
+		this.props.onValueChange(e);
 	}
 
 	render() {
 		return (
 			<div className="editor">
 				<form className="editorForm" onSubmit={this.handleSubmit}>
-					<div className="formGroupper">
-						<p>Background color: </p>
-						<input type="color" name="backgroundColor" value={this.state.backgroundColor} onChange={this.handleValueChange}/>
+					<div className="form-group">
+						<label for="backgroundColor">Background color: </label>
+						<input type="color" name="backgroundColor" className="form-control" value={this.props.style.backgroundColor} onChange={this.handleValueChange}/>
 					</div>
 				
-					<div className="formGroupper">
-						<p>Width: </p>
-						<input type="number" name="width" min="0" max="800" value={parseInt(this.state.width)} onChange={this.handleValueChange}/>
+					<div className="form-group">
+						<label for="width">Width: </label>
+						<input type="number" name="width" className="form-control" min="0" max="800" value={parseInt(this.props.style.width)} onChange={this.handleValueChange}/>
 					</div>
           
-					<div className="formGroupper">
-						<p>Height: </p>
-						<input type="number" name="height" min="0" max="800" value={parseInt(this.state.height)} onChange={this.handleValueChange}/>
+					<div className="form-group">
+						<label for="height">Height: </label>
+						<input type="number" name="height" className="form-control" min="0" max="800" value={parseInt(this.props.style.height)} onChange={this.handleValueChange}/>
 					</div>
 				
-					<div className="formGroupper">
-						<p>Border radius: </p>
-						<input type="range" name="borderRadius" min="0" max={this.state.width/2} value={parseInt(this.state.borderRadius)} onChange={this.handleValueChange}/>
+					<div className="form-group">
+						<label for="borderRadius">Border radius: </label>
+						<input type="range" name="borderRadius" className="custom-range" min="0" max={this.props.style.width/2} value={parseInt(this.props.style.borderRadius)} onChange={this.handleValueChange}/>
 					</div>
-					<input type="submit" value="Save" />
+					<input type="submit" className="form-control" value="Save"/>
 				</form>
 			</div>
 		);

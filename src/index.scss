@@ -1,0 +1,63 @@
+$theme-colors: (
+	"primary": rgb(0,180,247)
+);
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+html,
+body
+{
+	@extend .h-100;
+}
+
+/* body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+ */
+ 
+ 
+#root
+{
+	@extend .d-flex, .flex-column;
+	min-height: 100%;
+}
+
+button,
+input[type="submit"],
+input[type="radio"]
+{
+	@extend .btn, .d-flex, .justify-content-center, .align-items-center, .text-center, .btn-primary,.rounded;
+	
+	// background-image: linear-gradient(rgb(230,230,230),rgb(190,190,190));
+	// box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.4);
+	
+	&:hover{
+		// background-image: linear-gradient(rgb(240,240,240),rgb(200,200,200));
+	}
+	
+	&.active {
+		// background-image: linear-gradient(rgb(160,160,160),rgb(200,200,200));
+	}
+	
+}
+
+.btn>img 
+{
+	height: 20px;
+}
+
+.cls-1
+{
+	fill: white;
+}

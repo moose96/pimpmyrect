@@ -1,0 +1,69 @@
+$theme-colors: (
+	"primary": rgb(0,180,247)
+);
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+$color-test: #fcfffc; //alabastrowy
+$color-gray-test: rgba(229,228,226,0.3); //platynowy
+
+
+.app
+{
+	@extend .d-flex, .flex-column;
+	background-color: $color-gray-test;
+	flex: 1;
+	/*align-items: center;*/
+}
+
+header
+{
+	@extend .d-flex, .justify-content-center, .w-100, .sticky-top, .shadow-sm;
+	background-color: #ffffff;
+	// box-shadow: 0px 2px 3px 0px map-get($theme-colors,"primary");
+	border-bottom: 3px solid map-get($theme-colors,"primary");
+	/* position: fixed; */
+}
+
+.gallery
+{
+	@extend .d-flex, .flex-wrap, .h-100, .mx-auto;
+	width: 80%;
+	flex:1;
+	/*border-radius: 5px 5px 5px 5px;*/
+	box-shadow: 0px -2px 16px 0px rgba(0,0,0,0.2);
+	background-color: $color-test;
+}
+
+.gallery.list
+{
+	@extend .flex-column;
+}
+
+.galleryElement
+{
+	@extend .d-flex, .justify-content-center, .align-items-center;
+	
+	width: 33%;
+	height: 250px;
+	/* background-image: linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.2)); */
+	/* box-shadow: 0 0 8px -3px rgba(0,0,0,0.2) inset; */
+	&:hover 
+	{	
+		background-image: linear-gradient(white 0%, map-get($theme-colors,"primary") 400%);
+	}
+}
+
+.toolbar
+{
+	@extend .d-flex, .justify-content-end, .align-items-center, .w-100, .mr-2, .ml-2;
+	
+	height: 50px;
+	border-bottom: 1px solid rgba(120,120,120,0.3);
+}
+
+.toolbar>*
+{
+	@extend .mr-3;
+}
+

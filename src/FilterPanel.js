@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './panel.scss';
+
 class FilterPanel extends React.Component {
 	constructor(props) {
 		super(props);
@@ -8,53 +10,69 @@ class FilterPanel extends React.Component {
 		this.state = this.props.filters;
 	}
 	
-	handleValueChange(e) {	
-		// if(e.target.name==='backgroundColor') {
-			// this.setState({backgroundColor: e.target.value});
-			//newStyle.backgroundColor = e.target.value;
-		// } else if(e.target.name==='width') {
-			// this.setState({width: parseInt(e.target.value)});
-			//newStyle.width = parseInt(e.target.value);
-		// } else if (e.target.name==='height') {
-			// this.setState({height: parseInt(e.target.value)});
-			//newStyle.height = parseInt(e.target.value);
-		// } else if(e.target.name==='borderRadius') {
-			// this.setState({borderRadius: parseInt(e.target.value)});
-			//newStyle.borderRadius = parseInt(e.target.value);
-		// }
+	handleValueChange(e) {
+    let newFilters = Object.assign({},this.state);
+    
+		if(e.target.name==='backgroundColor') {
+			newFilters.backgroundColor.value = e.target.value;
+		} else if(e.target.name==='width') {
+			newFilters.width.value = parseInt(e.target.value);
+		} else if (e.target.name==='height') {
+			newFilters.height.value = parseInt(e.target.value);
+		} else if(e.target.name==='borderRadius') {
+			newFilters.borderRadius.value = parseInt(e.target.value);
+		}
+    
+    else if(e.target.id==='backgroundColorActive') {
+      newFilters.backgroundColor.active = e.target.checked;
+    }else if(e.target.id==='widthActive') {
+      newFilters.width.active = e.target.checked;
+    }else if(e.target.id==='heightActive') {
+      newFilters.height.active = e.target.checked;
+    }else if(e.target.id==='borderRadiusActive') {
+      newFilters.borderRadius.active = e.target.checked;
+    }
+    
+    this.setState(newFilters);
 			
-		// this.props.onValueChange(this.state);
+		this.props.onValueChange(newFilters);
 	}
 
 	render() {
 		return (
-			<div className="editor">
-				<form className="editorForm">
-					<div className="formGroupper">
-						<input type="checkbox" checked={this.props.filters.backgroundColor.active} name="backgroundColorActive" />
-						<p>Background color: </p>
-						<input type="color" name="backgroundColor" value={this.props.filters.backgroundColor.value} onChange={this.handleValueChange}/>
+				<form className="filterPanel">
+					<div className="form-group">
+            <div className="custom-control custom-checkbox form-check-inline">
+              <input type="checkbox" className="custom-control-input" checked={this.props.filters.backgroundColor.active} id="backgroundColorActive" onChange={this.handleValueChange}/>
+              <label className="custom-control-label" for="backgroundColorActive">Background color: </label>
+            </div>
+						<input type="color" name="backgroundColor"className="form-control"  value={this.props.filters.backgroundColor.value} onChange={this.handleValueChange}/>
 					</div>
 				
-					<div className="formGroupper">
-						<input type="checkbox" checked={this.props.filters.width.active} name="widthActive" />
-						<p>Width: </p>
-						<input type="number" name="width" min="0" max="800" value={this.props.filters.width.value} onChange={this.handleValueChange}/>
+					<div className="form-group">
+            <div className="custom-control custom-checkbox form-check-inline">
+              <input type="checkbox" className="custom-control-input" checked={this.props.filters.width.active} id="widthActive" onChange={this.handleValueChange}/>
+              <label className="custom-control-label" for="widthActive">Width: </label>
+            </div>
+						<input type="number" name="width" min="0" max="800" className="form-control" value={this.props.filters.width.value} onChange={this.handleValueChange}/>
 					</div>
           
-					<div className="formGroupper">
-						<input type="checkbox" checked={this.props.filters.height.active} name="heightActive" />
-						<p>Height: </p>
-						<input type="number" name="height" min="0" max="800" value={this.props.filters.height.value} onChange={this.handleValueChange}/>
+					<div className="form-group">
+            <div className="custom-control custom-checkbox form-check-inline">
+              <input type="checkbox" className="custom-control-input" checked={this.props.filters.height.active} id="heightActive" onChange={this.handleValueChange}/>
+              <label className="custom-control-label" width="heightActive">Height: </label>
+            </div>
+						<input type="number" name="height" min="0" max="800" className="form-control" value={this.props.filters.height.value} onChange={this.handleValueChange}/>
 					</div>
 				
-					<div className="formGroupper">
-						<input type="checkbox" checked={this.props.filters.borderRadius.active} name="borderRadiusActive" />
-						<p>Border radius: </p>
-						<input type="range" name="borderRadius" min="0" max="100" value={this.props.filters.borderRadius.value} onChange={this.handleValueChange}/>
+					<div className="form-group">
+            <div className="custom-control custom-checkbox form-check-inline">
+              <input type="checkbox" className="custom-control-input" checked={this.props.filters.borderRadius.active} id="borderRadiusActive" onChange={this.handleValueChange}/>
+              <label className="custom-control-label" width="borderRadiusActive">Border radius: </label>
+            </div>
+						<input type="range" name="borderRadius" min="0" max="100" className="custom-range" value={this.props.filters.borderRadius.value} onChange={this.handleValueChange}/>
 					</div>
 				</form>
-			</div>
 		);
 	}
 }

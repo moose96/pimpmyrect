@@ -34,6 +34,27 @@ include('dbconfig.inc.php');
 			if(isset($_GET['id'])) {
 				$query = $query."WHERE ID =".$_GET['id'];
 			}
+			
+			if(isset($_GET['order'])) {
+				$query.='ORDER BY ';
+				
+				if($_GET['order']=='square') {
+					$query.='(width*height)';
+				}
+				else if($_GET['order']=='radius') {
+					$query.='borderRadius';
+				}
+				else if($_GET['order']=='id') {
+					$query.='ID';
+				}
+				else
+					echo 'wrong data';
+				
+				if(isset($_GET['direction'])) {
+					if($_GET['direction']=='desc')
+						$query.=' DESC ';
+				} 
+			}
 				
 			$stmt = $db->query($query);
 				

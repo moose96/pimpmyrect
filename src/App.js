@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+//import './App.css';
 import Gallery from './Gallery.js';
 import Editor from './Editor.js';
+
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
@@ -32,11 +34,15 @@ class App extends Component {
     const headerElement = <header><h1>Pimp my rect!</h1></header>;
   
     //if this.state.editorPage is true, view editor...
+    //
     if(this.state.editorPage) {
       return (
-        <Editor onClose={this.handleEditorClose} element={this.state.currentElement}/>
+         <div className="app">
+          {headerElement}
+          <Editor onClose={this.handleEditorClose} element={this.state.currentElement}/>
+        </div>
       );
-    } else { //... or view gallery
+    } else {
       return (
         <div className="app">
           {headerElement}

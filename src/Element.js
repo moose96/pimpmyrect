@@ -1,5 +1,5 @@
 import React from 'react';
-import './Element.css';
+import './Element.scss';
 
 class Element extends React.Component {
 	constructor(props) {
@@ -61,12 +61,15 @@ class Element extends React.Component {
 			new: this.props.className=='new'
 		});
     
+   /*  console.log("Element::render, props.style");
+    console.log(this.props.style); */
+    
 		return (
-			<div className="element" id={this.props.id} style={this.props.style} onClick={this.handleElementClick} 
+			<div className="element" id={this.props.id} style={this.props.style} 
             onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
             
-				<button className={buttonClassName} onClick={this.handleCloseClick}>X</button>
-				<div className={infoClassName}>
+				<button className={buttonClassName} onClick={this.handleCloseClick}>x</button>
+				<div className={infoClassName} onClick={this.handleElementClick}>
 					<p>Click to edit!</p>
 				</div>
 				{this.props.children}

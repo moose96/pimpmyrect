@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Editor.css';
+import './Editor.scss';
 import Element from './Element.js';
 import EditorPanel from './EditorPanel.js';
 
@@ -18,8 +18,20 @@ class Editor extends Component {
 	};
   }
   
-  handleValueChange(value) {
-	  this.setState({style: value});
+  handleValueChange(e) {
+    let newStyle = Object.assign({},this.state.style);
+    
+    if(e.target.name==='backgroundColor') {
+      newStyle.backgroundColor = e.target.value;
+		} else if(e.target.name==='width') {
+			newStyle.width = parseInt(e.target.value);
+		} else if (e.target.name==='height') {
+			newStyle.height = parseInt(e.target.value);
+		} else if(e.target.name==='borderRadius') {
+			newStyle.borderRadius = parseInt(e.target.value);
+		}
+    
+    this.setState({style: newStyle});
   }
   
   handleCloseEvent(e) {
@@ -56,15 +68,17 @@ class Editor extends Component {
   
   render() {
     return (
-		<div className="app">
-			<div className="menu">
-				<a href="" className="returnButton" onClick={this.handleCloseEvent}><img alt="wstecz" src={leftArrowImg} /></a>
-			</div>
-			<div className="output">
-				<Element style={this.state.style} disableControls={true}/>
-			</div>
-			<EditorPanel onValueChange={this.handleValueChange} style={this.state.style} onSubmit={this.handleSubmitEvent}/>
-		</div>
+    <div className="editorPage">
+      <div className="outputWrapper">
+        <div className="menu">
+          <a href="" className="returnButton" onClick={this.handleCloseEvent}><img alt="wstecz" src={leftArrowImg} /></a>
+        </div>
+        <div className="output">
+            <Element style={this.state.style} disableControls={true}/>
+        </div>
+      </div>
+      <EditorPanel onValueChange={this.handleValueChange} style={this.state.style} onSubmit={this.handleSubmitEvent}/>
+    </div>
     );
   }
 }
