@@ -1,4 +1,6 @@
 import React from 'react';
+
+import CONFIG from './config.js';
 import Element from './Element.js'
 import Toolbar from './Toolbar.js';
 
@@ -16,46 +18,13 @@ class Gallery extends React.Component {
     this.handleSortChange = this.handleSortChange.bind(this);
     this.getData = this.getData.bind(this);
     
-    this.newElement = {
-      id: 0,
-      style: {
-        backgroundColor: '#ff0000',
-        width: 100,
-        height: 100,
-        borderRadius: 10
-      }
-    }
-    
     this.mappedId = [];
 		
 		this.state = {
 			elements: [],
       galleryClassName: 'gallery',
-			filter: {
-        backgroundColor: { //only equals mode
-          active: false,
-          value: '#f40000' 
-        },
-        width: {
-          active: false,
-          greater: true,
-          value: 100
-        },
-        height: {
-          active: false,
-          greater: true,
-          value: 100
-        },
-        borderRadius: {
-          active: false,
-          greater: true,
-          value: 10
-        }
-      },
-      sort: {
-        order: null,
-        direction: null
-      }
+			filter: CONFIG.defaultFilter,
+      sort: CONFIG.defaultSort
 		};
 	}
   
@@ -82,7 +51,7 @@ class Gallery extends React.Component {
 	//event handler when user clicks any element
 	handleElementClick(key) {
     if(key == 0)
-      this.props.onClick(this.newElement);
+      this.props.onClick(CONFIG.newElement);
     else
       this.props.onClick(this.state.elements[this.mappedId[key]]);
 	}
@@ -121,15 +90,29 @@ class Gallery extends React.Component {
 	//function which renders elements
 	drawElements(element,index) {
     this.mappedId[element.id] = index;
+    var Color = require("color");
     
     let filters = this.state.filter;
-    if((!filters.backgroundColor.active||(filters.backgroundColor.active&&filters.backgroundColor.value==element.style.backgroundColor)) &&
+    let filterBackgroundHue = {
+      start: CONFIG.colorsTable[filters.backgroundColor.value].hueStart,
+      end: CONFIG.colorsTable[filters.backgroundColor.value].hueEnd
+    };
+    let elementBackgroundHue = Color(element.style.backgroundColor).hsl().hue();
+    
+    if((!filters.backgroundColor.active||(filters.backgroundColor.active&&(elementBackgroundHue>=filterBackgroundHue.start&&elementBackgroundHue<=filterBackgroundHue.end)))&&
         (!filters.width.active || (filters.width.active&&element.style.width>filters.width.value))  && 
         (!filters.height.active || (filters.height.active&&element.style.height>filters.height.value)) && 
         (!filters.borderRadius.active || (filters.borderRadius.active&&element.style.borderRadius>filters.borderRadius.value)))
       return (
         <div className="galleryElement">
           <Element key={element.id} id={element.id} style={this.correctedStyle(element.style)} onClick={this.handleElementClick}/>
+          <div className="galleryElementInfo">
+            <h3>Element has ID: {element.id}</h3>
+            <p>Background color: {element.style.backgroundColor}</p>
+            <p>Width: {element.style.width}</p>
+            <p>Height: {element.style.height}</p>
+            <p>Border radius: {element.style.borderRadius}</p>
+          </div>
         </div>
       );
     else
@@ -140,10 +123,6 @@ class Gallery extends React.Component {
 	
 	render() {
 
-		//create element list from this.state.elements, wchich was loaded from datababse
-		const elementList = this.state.elements.map(this.drawElements,this);
-	
-    	
 		const newElementStyle = {
 			backgroundColor: '#c0c0c0',
 			width: 100,
@@ -155,7 +134,7 @@ class Gallery extends React.Component {
 				<div className={this.state.galleryClassName}>
 					<Toolbar filters={this.state.filter} sortOptions={this.state.sort} 
             onViewButtonClick = {this.handleViewChange} onFiltersChange={this.handleFiltersChange} onSelectValueChange={this.handleSortChange}/>
-          {elementList}
+          {this.state.elements.map(this.drawElements,this) /*add elements from database*/}
           <div className="galleryElement">
             <Element className="new" key={0} id={0} style={newElementStyle} onClick={this.handleElementClick} disableControls={true}>
               <img alt="+" src={svgPlusItem} style={{width: '70%'}} />

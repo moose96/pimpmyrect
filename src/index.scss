@@ -52,8 +52,10 @@ input[type="radio"]
 	
 }
 
-.btn>img 
+.btn>*,
+.btn>* *
 {
+	width: 20px;
 	height: 20px;
 }
 

@@ -1,4 +1,6 @@
 import React from 'react';
+
+import CONFIG from './config.js';
 import FilterPanel from './FilterPanel.js';
 
 import Button from 'react-bootstrap/Button';
@@ -9,15 +11,6 @@ import Popover from 'react-bootstrap/Popover';
 
 import listViewIcon from './img/list-view.svg';
 import thumbViewIcon from './img/thumb-view.svg';
-
-var sortingOptions = [
-  {order: null, direction: null},
-  {order: 'id', direction: 'desc'},
-  {order: 'square', direction: null},
-  {order: 'square', direction: 'desc'},
-  {order: 'radius', direction: null},
-  {order: 'radius', direction: 'desc'}
-]
 
 class Toolbar extends React.Component {
 	constructor(props) {
@@ -57,7 +50,7 @@ class Toolbar extends React.Component {
   
   handleSelectValueChange(e) {
     this.setState({currentSortingOption: e.target.value});
-    this.props.onSelectValueChange(sortingOptions[e.target.value]);
+    this.props.onSelectValueChange(CONFIG.sortingOptions[e.target.value]);
   }
 	
   //<img alt="list-view" src={thumbViewIcon}/>
@@ -79,7 +72,9 @@ class Toolbar extends React.Component {
           <button name="list" onClick={this.handleButtonClick}> List </button>
           </div> */}
         <ToggleButtonGroup type="radio" name="viewType" defaultValue={this.state.listView?'list':'thumb'} onChange={this.handleToggleChange}>
-          <ToggleButton name="thumb" value={"thumb"}> <img alt="list-view" src={thumbViewIcon}/> </ToggleButton>
+          <ToggleButton name="thumb" value={"thumb"}>
+            <img alt="list-view" src={thumbViewIcon}/>
+          </ToggleButton>
           <ToggleButton name="list" value={"list"}> <img alt="list-view" src={listViewIcon}/></ToggleButton>
         </ToggleButtonGroup>
         <select value={this.state.currentSortingOption} className="form-control w-25" onChange={this.handleSelectValueChange}>

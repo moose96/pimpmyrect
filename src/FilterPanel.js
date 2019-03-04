@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CONFIG from './config.js';
+
 import './panel.scss';
 
 class FilterPanel extends React.Component {
@@ -12,6 +14,7 @@ class FilterPanel extends React.Component {
 	
 	handleValueChange(e) {
     let newFilters = Object.assign({},this.state);
+    var Color = require('color');
     
 		if(e.target.name==='backgroundColor') {
 			newFilters.backgroundColor.value = e.target.value;
@@ -44,15 +47,20 @@ class FilterPanel extends React.Component {
 					<div className="form-group">
             <div className="custom-control custom-checkbox form-check-inline">
               <input type="checkbox" className="custom-control-input" checked={this.props.filters.backgroundColor.active} id="backgroundColorActive" onChange={this.handleValueChange}/>
-              <label className="custom-control-label" for="backgroundColorActive">Background color: </label>
+              <label className="custom-control-label" htmlFor="backgroundColorActive">Background color: </label>
             </div>
-						<input type="color" name="backgroundColor"className="form-control"  value={this.props.filters.backgroundColor.value} onChange={this.handleValueChange}/>
+						{/*<input type="color" name="backgroundColor"className="form-control"  value={this.props.filters.backgroundColor.value} onChange={this.handleValueChange}/>*/}
+            <select name="backgroundColor" value={this.props.filters.backgroundColor.value} className="form-control" onChange={this.handleValueChange}>  
+              {CONFIG.colorsTable.map(function(element,index){
+                return (<option value={index}>{element.name}</option>);
+              })}
+            </select>
 					</div>
 				
 					<div className="form-group">
             <div className="custom-control custom-checkbox form-check-inline">
               <input type="checkbox" className="custom-control-input" checked={this.props.filters.width.active} id="widthActive" onChange={this.handleValueChange}/>
-              <label className="custom-control-label" for="widthActive">Width: </label>
+              <label className="custom-control-label" htmlFor="widthActive">Width: </label>
             </div>
 						<input type="number" name="width" min="0" max="800" className="form-control" value={this.props.filters.width.value} onChange={this.handleValueChange}/>
 					</div>
@@ -60,7 +68,7 @@ class FilterPanel extends React.Component {
 					<div className="form-group">
             <div className="custom-control custom-checkbox form-check-inline">
               <input type="checkbox" className="custom-control-input" checked={this.props.filters.height.active} id="heightActive" onChange={this.handleValueChange}/>
-              <label className="custom-control-label" width="heightActive">Height: </label>
+              <label className="custom-control-label" htmlFor="heightActive">Height: </label>
             </div>
 						<input type="number" name="height" min="0" max="800" className="form-control" value={this.props.filters.height.value} onChange={this.handleValueChange}/>
 					</div>
@@ -68,7 +76,7 @@ class FilterPanel extends React.Component {
 					<div className="form-group">
             <div className="custom-control custom-checkbox form-check-inline">
               <input type="checkbox" className="custom-control-input" checked={this.props.filters.borderRadius.active} id="borderRadiusActive" onChange={this.handleValueChange}/>
-              <label className="custom-control-label" width="borderRadiusActive">Border radius: </label>
+              <label className="custom-control-label" htmlFor="borderRadiusActive">Border radius: </label>
             </div>
 						<input type="range" name="borderRadius" min="0" max="100" className="custom-range" value={this.props.filters.borderRadius.value} onChange={this.handleValueChange}/>
 					</div>
