@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-//import './App.css';
+
+import {Header} from './helper.js';
 import Gallery from './Gallery.js';
 import Editor from './Editor.js';
 
@@ -10,10 +11,12 @@ class App extends Component {
     super(props);
     this.handleEditorClose = this.handleEditorClose.bind(this);
     this.handleGalleryElementClick = this.handleGalleryElementClick.bind(this);
+    this.handleGalleryViewChange = this.handleGalleryViewChange.bind(this);
 	
     this.state = {
       editorPage: false,
-      currentElement: {}
+      currentElement: {},
+      currentGalleryClassName: 'gallery'
     }
   }
   
@@ -29,24 +32,27 @@ class App extends Component {
 	  });
   }
   
+  handleGalleryViewChange(value)
+  {
+    //this.setState({currentGalleryClassName: value});
+  }
+  
   render() {
-    //create header element
-    const headerElement = <header><h1>Pimp my rect!</h1></header>;
   
     //if this.state.editorPage is true, view editor...
     //
     if(this.state.editorPage) {
       return (
          <div className="app">
-          {headerElement}
+          <Header />
           <Editor onClose={this.handleEditorClose} element={this.state.currentElement}/>
         </div>
       );
     } else {
       return (
         <div className="app">
-          {headerElement}
-          <Gallery onClick={this.handleGalleryElementClick}/>
+          <Header />
+          <Gallery className={this.state.currentGalleryClassName} onClick={this.handleGalleryElementClick} onViewChange={this.handleGalleryViewChange}/>
         </div>
       );
     }

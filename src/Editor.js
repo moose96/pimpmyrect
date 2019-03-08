@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './Editor.scss';
 import Element from './Element.js';
-import EditorPanel from './EditorPanel.js';
+import EditorPanel from './panels/EditorPanel.js';
+import CONFIG from './config.json';
 
-import leftArrowImg from './img/left-arrow.svg';
+import {ReactComponent as LeftArrowImg} from './img/321-arrow-left2.svg';
 
 class Editor extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class Editor extends Component {
       params.id = this.state.currentId;
     }
     
-	  axios.get('http://localhost/learning/react-zadanka/pimpmyrect/public/dbservice?'+action, {
+	  axios.get(CONFIG.dbServicePath+'?'+action, {
       params: params
     }).then((response) => {
       console.log(response.data);
@@ -69,14 +70,17 @@ class Editor extends Component {
   render() {
     return (
     <div className="editorPage">
+    
       <div className="outputWrapper">
         <div className="menu">
-          <a href="" className="returnButton" onClick={this.handleCloseEvent}><img alt="wstecz" src={leftArrowImg} /></a>
+          <a href="" className="returnButton" onClick={this.handleCloseEvent}><LeftArrowImg className="img leftArrow"/></a>
         </div>
+        
         <div className="output">
             <Element style={this.state.style} disableControls={true}/>
         </div>
       </div>
+      
       <EditorPanel onValueChange={this.handleValueChange} style={this.state.style} onSubmit={this.handleSubmitEvent}/>
     </div>
     );

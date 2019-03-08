@@ -1,5 +1,11 @@
 import React from 'react';
 
+import './Panel.scss';
+
+import {RangeIcons} from './../helper.js'
+
+import './Panel.scss';
+
 class EditorPanel extends React.Component {
 	constructor(props) {
 		super(props);
@@ -22,22 +28,23 @@ class EditorPanel extends React.Component {
 			<div className="editor">
 				<form className="editorForm" onSubmit={this.handleSubmit}>
 					<div className="form-group">
-						<label for="backgroundColor">Background color: </label>
+						<label htmlFor="backgroundColor">Background color: </label>
 						<input type="color" name="backgroundColor" className="form-control" value={this.props.style.backgroundColor} onChange={this.handleValueChange}/>
 					</div>
 				
 					<div className="form-group">
-						<label for="width">Width: </label>
+						<label htmlFor="width">Width: </label>
 						<input type="number" name="width" className="form-control" min="0" max="800" value={parseInt(this.props.style.width)} onChange={this.handleValueChange}/>
 					</div>
           
 					<div className="form-group">
-						<label for="height">Height: </label>
+						<label htmlFor="height">Height: </label>
 						<input type="number" name="height" className="form-control" min="0" max="800" value={parseInt(this.props.style.height)} onChange={this.handleValueChange}/>
 					</div>
 				
 					<div className="form-group">
-						<label for="borderRadius">Border radius: </label>
+						<label htmlFor="borderRadius">Border radius: </label>
+            <RangeIcons />
 						<input type="range" name="borderRadius" className="custom-range" min="0" max={this.props.style.width/2} value={parseInt(this.props.style.borderRadius)} onChange={this.handleValueChange}/>
 					</div>
 					<input type="submit" className="form-control" value="Save"/>

@@ -1,8 +1,9 @@
 import React from 'react';
 
-import CONFIG from './config.js';
+import CONFIG from './../config.json';
+import {RangeIcons} from './../helper.js';
 
-import './panel.scss';
+import './Panel.scss';
 
 class FilterPanel extends React.Component {
 	constructor(props) {
@@ -78,7 +79,10 @@ class FilterPanel extends React.Component {
               <input type="checkbox" className="custom-control-input" checked={this.props.filters.borderRadius.active} id="borderRadiusActive" onChange={this.handleValueChange}/>
               <label className="custom-control-label" htmlFor="borderRadiusActive">Border radius: </label>
             </div>
-						<input type="range" name="borderRadius" min="0" max="100" className="custom-range" value={this.props.filters.borderRadius.value} onChange={this.handleValueChange}/>
+            <div className="d-flex flex-column w-100">
+              <RangeIcons />
+              <input type="range" name="borderRadius" min="0" max="100" className="custom-range" value={this.props.filters.borderRadius.value} onChange={this.handleValueChange}/>
+            </div>
 					</div>
 				</form>
 		);

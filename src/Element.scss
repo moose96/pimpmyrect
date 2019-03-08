@@ -2,10 +2,16 @@
 
 .element
 {
-	@extend .d-flex, .justify-content-center, .mt-2, .mb-2, .mr-3, .ml-3;
+	@extend .d-flex, .justify-content-center, .align-items-center, .mt-2, .mb-2, .mr-3, .ml-3;
 	
 	position: relative;
 	z-index: 0;
+	
+	svg 
+	{
+		width: 70%;
+		height: auto;
+	}
 }
 
 .element.new
@@ -13,15 +19,13 @@
 	@extend .w-100, .h-100, .rounded-0;
 	
 	background-color: '#c0c0c0';
+	border: 2px solid red;
 }
 
 .closeButton
 {
 	@extend .close;
 	color: map-get($theme-colors,"primary");
-	/* width: 20px;
-	height: 20px;
-	border-radius: 10px 10px 10px 10px; */
 	position: absolute;
 	right: -10px;
 	top: -20px;
@@ -30,7 +34,6 @@
 
 	&:hover
 	{
-		// background-image: linear-gradient(rgb(240,240,240),rgb(200,200,200));
 		color: map-get($theme-colors,"primary");
 	}
 }
@@ -49,6 +52,11 @@
 	color: white;
 	cursor: pointer;
 	transition: opacity 0.25s;
+	
+	p
+	{
+		margin: 0;
+	}
 }
 
 .hidden

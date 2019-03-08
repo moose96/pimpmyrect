@@ -1,4 +1,6 @@
 import React from 'react';
+
+import CONFIG from './config.json';
 import './Element.scss';
 
 class Element extends React.Component {
@@ -19,7 +21,7 @@ class Element extends React.Component {
 	handleCloseClick(e) {
     const axios = require('axios');
     
-    axios.get('http://localhost/learning/react-zadanka/pimpmyrect/public/dbservice?delete', {
+    axios.get(CONFIG.dbServicePath+'?delete', {
       params: {
         id: this.props.id
       }
@@ -48,21 +50,17 @@ class Element extends React.Component {
     var classNames = require("classnames");
 	
     var buttonClassName = 
-        classNames({closeButton: true,
-                    hidden: this.state.disableControls?true:!this.state.elementMouseOver});
+      classNames({closeButton: true,
+                  hidden: this.state.disableControls?true:!this.state.elementMouseOver});
 	
-	var infoClassName = 
-		classNames({elementInfo: true,
-					hidden: this.state.disableControls?true:!this.state.elementMouseOver});
+    var infoClassName = 
+      classNames({elementInfo: true,
+                  hidden: this.state.disableControls?true:!this.state.elementMouseOver});
 	
-	var elementClassName = 
-		classNames({
-			element: true,
-			new: this.props.className=='new'
-		});
+    var elementClassName = 
+      classNames({element: true,
+                  new: this.props.className==='new'});
     
-   /*  console.log("Element::render, props.style");
-    console.log(this.props.style); */
     
 		return (
 			<div className="element" id={this.props.id} style={this.props.style} 
@@ -72,7 +70,9 @@ class Element extends React.Component {
 				<div className={infoClassName} onClick={this.handleElementClick}>
 					<p>Click to edit!</p>
 				</div>
+        
 				{this.props.children}
+        
 			</div>
 		);
 	}

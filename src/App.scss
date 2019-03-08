@@ -1,28 +1,20 @@
-$theme-colors: (
-	"primary": rgb(0,180,247)
-);
-
+@import 'ThemeBase.scss';
 @import '~bootstrap/scss/bootstrap.scss';
-
-$color-test: #fcfffc; //alabastrowy
-$color-gray-test: rgba(229,228,226,0.3); //platynowy
-
 
 .app
 {
 	@extend .d-flex, .flex-column;
-	background-color: $color-gray-test;
+	
+	background-color: get-theme-color("bg-app","light");
 	flex: 1;
-	/*align-items: center;*/
 }
 
 header
 {
 	@extend .d-flex, .justify-content-center, .w-100, .sticky-top, .shadow-sm;
-	background-color: #ffffff;
+	background-color: get-theme-color("bg-header","light");
 	// box-shadow: 0px 2px 3px 0px map-get($theme-colors,"primary");
 	border-bottom: 3px solid map-get($theme-colors,"primary");
-	/* position: fixed; */
 }
 
 .gallery
@@ -30,9 +22,8 @@ header
 	@extend .d-flex, .flex-wrap, .h-100, .mx-auto;
 	width: 80%;
 	flex:1;
-	/*border-radius: 5px 5px 5px 5px;*/
 	box-shadow: 0px -2px 16px 0px rgba(0,0,0,0.2);
-	background-color: $color-test;
+	background-color: get-theme-color("bg-gallery","light");
 	
 	.galleryElement
 	{
@@ -54,6 +45,13 @@ header
 		@extend .justify-content-start;
 		width: unset;
 		
+		.elementWrapper
+		{
+			@extend .d-flex, .justify-content-center;
+			border-right: 1px solid rgba(0,0,0,0.2);
+			flex: 1;
+		}
+		
 		&:nth-child(odd)
 		{
 			background-image: linear-gradient(white 0%, map-get($theme-colors,"primary") 800%);
@@ -62,7 +60,8 @@ header
 	
 	.galleryElementInfo 
 	{
-		@extend .d-flex, .flex-column;
+		@extend .d-flex, .flex-column, .ml-2;
+		flex: 3;
 	}
 }
 
@@ -71,12 +70,6 @@ header
 	@extend .d-flex, .justify-content-center, .align-items-center;
 	
 	height: 250px;
-	/* background-image: linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.2)); */
-	/* box-shadow: 0 0 8px -3px rgba(0,0,0,0.2) inset; */
-	&:hover 
-	{	
-		//background-image: linear-gradient(white 0%, map-get($theme-colors,"primary") 400%);
-	}
 	
 	$border-style: 1px solid rgba(127,127,127,0.2);
 	border-bottom: $border-style;

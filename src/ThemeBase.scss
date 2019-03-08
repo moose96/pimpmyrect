@@ -1,0 +1,34 @@
+$theme-colors: (
+	"primary": rgb(0,180,247),
+	"bg-app": rgba(229,228,226,0.3), //platynowy
+	"bg-gallery": #fcfffc, //alabastrowy
+	"bg-header": white
+);
+
+$light-colors: (
+	"primary": map-get($theme-colors,"primary"),
+	"bg-app": rgba(229,228,226,0.3), //platynowy
+	"bg-gallery": #fcfffc, //alabastrowy
+	"bg-header": white,
+	
+	"txt-color": black
+);
+
+$dark-colors: (
+	"primary": map-get($theme-colors,"primary"),
+	"bg-app": rgba(229,228,226,0.3), //platynowy
+	"bg-gallery": #fcfffc, //alabastrowy
+	"bg-header": black,
+	
+	"txt-color": white
+);
+
+@function get-theme-color($key,$theme: "light")
+{
+	@if $theme == "light" {
+		@return map-get($light-colors,$key);
+	}
+	@else if $theme == "dark" {
+		@return map-get($dark-colors,$key);
+	}
+}

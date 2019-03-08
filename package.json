@@ -7,6 +7,7 @@
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "color": "^3.1.0",
+    "json-loader": "^0.5.7",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.5",

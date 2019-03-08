@@ -1,8 +1,6 @@
-$theme-colors: (
-	"primary": rgb(0,180,247)
-);
-
+@import 'ThemeBase.scss';
 @import '~bootstrap/scss/bootstrap.scss';
+
 
 html,
 body
@@ -37,19 +35,7 @@ button,
 input[type="submit"],
 input[type="radio"]
 {
-	@extend .btn, .d-flex, .justify-content-center, .align-items-center, .text-center, .btn-primary,.rounded;
-	
-	// background-image: linear-gradient(rgb(230,230,230),rgb(190,190,190));
-	// box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.4);
-	
-	&:hover{
-		// background-image: linear-gradient(rgb(240,240,240),rgb(200,200,200));
-	}
-	
-	&.active {
-		// background-image: linear-gradient(rgb(160,160,160),rgb(200,200,200));
-	}
-	
+	@extend .btn, .d-flex, .justify-content-center, .align-items-center, .text-center, .btn-primary,.rounded;	
 }
 
 .btn>*,
@@ -59,7 +45,7 @@ input[type="radio"]
 	height: 20px;
 }
 
-.cls-1
+svg *
 {
 	fill: white;
 }
