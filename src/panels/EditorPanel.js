@@ -24,8 +24,12 @@ class EditorPanel extends React.Component {
 	}
 
 	render() {
+    var classnames = require('classnames');
 		return (
-			<div className="editor">
+			<div className={classnames({
+        editor: true,
+        rightCovered: !this.props.show
+      })}>
 				<form className="editorForm" onSubmit={this.handleSubmit}>
 					<div className="form-group">
 						<label htmlFor="backgroundColor">Background color: </label>

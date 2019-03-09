@@ -26,6 +26,7 @@ class Gallery extends React.Component {
       galleryClassName: this.props.className,
 			filter: CONFIG.defaultFilter,
       sort: CONFIG.defaultSort,
+      listView: false
 		};
 	}
   
@@ -65,7 +66,9 @@ class Gallery extends React.Component {
         list: type
       });
     
-    this.setState({galleryClassName: newGalleryClassName});
+    this.setState({
+      galleryClassName: newGalleryClassName,
+      listView: type});
     this.props.onViewChange(newGalleryClassName);
   }
   
@@ -84,7 +87,7 @@ class Gallery extends React.Component {
     this.mappedId[element.id] = index;
     
     return (
-      <GalleryElement element={element} filters={this.state.filter} onClick={this.handleElementClick}/>
+      <GalleryElement element={element} filters={this.state.filter} listView={this.state.listView} onClick={this.handleElementClick}/>
     );
 	}
   

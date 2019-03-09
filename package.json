@@ -28,5 +28,13 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "guppy": {
+    "id": "15f677d0-41de-11e9-ac64-0124c2dafc46",
+    "name": "pimpmyrect",
+    "type": "create-react-app",
+    "color": "#cc004a",
+    "icon": null,
+    "createdAt": 1552075771855
+  }
 }

@@ -8,6 +8,8 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import {ReactComponent as ListViewIcon} from './../img/187-list.svg';
 import {ReactComponent as ThumbViewIcon} from './../img/grid.svg';
@@ -42,9 +44,9 @@ class Toolbar extends React.Component {
     this.props.onFiltersChange(filters);
   }
   
-  handleSelectValueChange(e) {
-    this.setState({currentSortingOption: e.target.value});
-    this.props.onSelectValueChange(CONFIG.sortingOptions[e.target.value].data);
+  handleSelectValueChange(key,event) {
+    this.setState({currentSortingOption:key});
+    this.props.onSelectValueChange(CONFIG.sortingOptions[key].data);
   }
 	
   
@@ -75,11 +77,17 @@ class Toolbar extends React.Component {
         </ToggleButtonGroup>
         
         
-        <select value={this.state.currentSortingOption} className="form-control w-25" onChange={this.handleSelectValueChange}>
+        {/*<select value={this.state.currentSortingOption} className="form-control w-25" onChange={this.handleSelectValueChange}>
           {CONFIG.sortingOptions.map(function(element,index){
             return (<option value={index}>{element.name}</option>);
           })}
-        </select>
+        </select>*/}
+        
+        <DropdownButton id="sortingOptions" title={CONFIG.sortingOptions[this.state.currentSortingOption].name} alignRight>
+          {CONFIG.sortingOptions.map(function(element,index){
+            return (<Dropdown.Item as="button" eventKey={index} onSelect={this.handleSelectValueChange}>{element.name}</Dropdown.Item>);
+          },this)}
+        </DropdownButton>
         
 			</div>
 		);

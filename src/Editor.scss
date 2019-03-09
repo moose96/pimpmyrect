@@ -3,22 +3,72 @@
 
 .menu
 {
-	@extend .w-100,.sticky-top;
+	@extend .d-flex,.justify-content-between, .align-items-center, .w-100,.sticky-top;
 	z-index: 1;
+	
+	.menuButton
+	{
+		@extend .border-0;
+		display: none !important;
+		background-color: transparent;
+		
+		svg>*
+		{
+			fill: get-theme-color("txt-color","light")
+		}
+	}
 }
 
 .editor
 {
 	@extend .d-flex;
 	bottom: 0px;
-	width: 20%;
+	flex: 1;
 }
 
 .editorPage,
 .outputWrapper
 {
 	@extend .d-flex;
-	flex: 1;
+	flex: 4;
+}
+
+@media screen and (max-width: 800px)
+{
+	.outputWrapper
+	{
+		flex: 3;
+	}
+}
+
+@media screen and (min-width: 480px) and (max-width: 640px)
+{
+	.outputWrapper
+	{
+		flex: 2;
+	}
+}
+
+@media screen and (max-width: 480px)
+{
+	.menu .menuButton
+	{
+		display: inline !important;
+	}
+	.editor
+	{
+		position: fixed;
+		right: 0px;
+		width: 80%;
+		top: 50px;
+		transition: transform 0.5s;
+		
+		&.rightCovered
+		{
+			transform: translateX(102%);
+			transition: transform 0.5s;
+		}
+	}
 }
 
 .outputWrapper

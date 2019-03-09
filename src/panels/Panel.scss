@@ -46,13 +46,21 @@
 	}
 }
 
-.popover
-{
-	max-width: 35%;
-}
-
 #filterPanel
 {
-	max-width: 35%;
-	width: 25%;
+	max-width: 312px;
+}
+
+@media screen and (max-width: 312px)
+{
+	.filterPanel .form-group
+	{
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 480px)
+{
+	
 }

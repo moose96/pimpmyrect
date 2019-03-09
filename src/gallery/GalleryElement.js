@@ -16,19 +16,30 @@ class GalleryElement extends React.Component
   }
   
   handleElementClick(value) {
-    this.props.onClick(value);
+    if(value.target!==undefined&&value.target.name==='listLink') {
+      this.props.onClick(value.target.id);
+      value.preventDefault();
+    }
+    else
+      this.props.onClick(value);
   }
   
   correctedStyle(style) {
-    if(style.height>250) {
-      var scale = 250/style.height;
-      var newStyle = Object.assign({},style);
-      
-      newStyle.width*=scale;
-      newStyle.height*=scale;
-      return newStyle;
+    let maxValue = this.props.listView?100:220;
+    var newStyle = Object.assign({},style);
+    
+    if(style.height>maxValue) {
+      var scale = maxValue/style.height;
     }
-    return style;
+    else if(style.width>maxValue) {
+      var scale = maxValue/style.width;
+    }
+    else
+      return style;
+      
+    newStyle.width*=scale;
+    newStyle.height*=scale;
+    return newStyle;
   }
   
   equalBackgroundColor() {
@@ -72,7 +83,7 @@ class GalleryElement extends React.Component
           </div>
           
           <div className="galleryElementInfo">
-            <h3><a href="" onClick={this.handleElementClick}>Element has ID: {this.props.element.id}</a></h3>
+            <h3><a href="" id={this.props.element.id} name="listLink" onClick={this.handleElementClick}>Element has ID: {this.props.element.id}</a></h3>
             <p>Background color: {this.props.element.style.backgroundColor}</p>
             <p>Width: {this.props.element.style.width}</p>
             <p>Height: {this.props.element.style.height}</p>
