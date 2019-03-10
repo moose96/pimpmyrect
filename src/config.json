@@ -38,13 +38,13 @@
 	},
 	"defaultSort":
 	{
-		"order":null,
+		"order":"id",
 		"direction":null
 	},
 	"sortingOptions":
 	[
 		{
-			"data":{"order":null,"direction":null},
+			"data":{"order":"id","direction":null},
 			"name":"By oldest"
 		},
 		{

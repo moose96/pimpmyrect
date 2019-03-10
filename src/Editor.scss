@@ -33,6 +33,22 @@
 	flex: 4;
 }
 
+.outputWrapper
+{
+	@extend .flex-column;
+}
+
+.output
+{
+	@extend .d-flex, .justify-content-center, .align-items-center;
+	flex: 1;
+}
+
+.img.leftArrow *
+{
+	fill: get-theme-color("txt-color","light");
+}
+
 @media screen and (max-width: 800px)
 {
 	.outputWrapper
@@ -69,20 +85,4 @@
 			transition: transform 0.5s;
 		}
 	}
-}
-
-.outputWrapper
-{
-	@extend .flex-column;
-}
-
-.output
-{
-	@extend .d-flex, .justify-content-center, .align-items-center;
-	flex: 1;
-}
-
-.img.leftArrow *
-{
-	fill: get-theme-color("txt-color","light");
 }

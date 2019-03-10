@@ -18,6 +18,7 @@ class Gallery extends React.Component {
     this.handleFiltersChange = this.handleFiltersChange.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
     this.getData = this.getData.bind(this);
+    this.sortElements = this.sortElements.bind(this);
     
     this.mappedId = [];
 		
@@ -25,7 +26,6 @@ class Gallery extends React.Component {
 			elements: [],
       galleryClassName: this.props.className,
 			filter: CONFIG.defaultFilter,
-      sort: CONFIG.defaultSort,
       listView: false
 		};
 	}
@@ -34,11 +34,16 @@ class Gallery extends React.Component {
     const axios = require('axios');
 		/*elements read from database: */
 		
-		axios.get(CONFIG.dbServicePath+'?get',{
-      params: this.state.sort.order!==null?this.state.sort:null
-    })
+		axios.get('/data/pimpmyrect.json')
 		.then((response) => {
-			this.setState({elements: response.data});
+      console.log(response.data);
+      
+      let _elements = response.data;
+      _elements.sort((a,b) => {
+        return this.sortElements(a,b,CONFIG.defaultSort);
+      });
+      
+			this.setState({elements: _elements});
 		})
 		.catch((response) =>{
       console.log(response);
@@ -77,8 +82,12 @@ class Gallery extends React.Component {
   }
   
   handleSortChange(value) {
-    this.setState({sort: value});
-    this.getData();
+    let _elements = this.state.elements;
+    _elements.sort((a,b) => {
+      return this.sortElements(a,b,value);
+    });
+    
+    this.setState({elements: _elements});
   }
   
   
@@ -91,14 +100,36 @@ class Gallery extends React.Component {
     );
 	}
   
-	
+	sortElements(first,second,sort) {
+    let _first,_second;
+    
+    
+    if(sort.order === 'id') {
+      _first = first.id;
+      _second = second.id;
+    }
+    else if(sort.order === 'square') {
+      _first = first.style.width*first.style.height;
+      _second = second.style.height*second.style.height;
+    }
+    else if(sort.order === 'radius') {
+      _first = first.style.borderRadius;
+      _second = second.style.borderRadius;
+    }
+    
+    
+    if(sort.direction === null)
+      return _first-_second;
+    else if(sort.direction === 'desc')
+      return _second - _first;
+  }
 	
 	render() {
 
 		return(
 				<div className={this.state.galleryClassName}>
         
-					<Toolbar filters={this.state.filter} sortOptions={this.state.sort} 
+					<Toolbar filters={this.state.filter}  
             onViewButtonClick = {this.handleViewChange} onFiltersChange={this.handleFiltersChange} onSelectValueChange={this.handleSortChange}/>
             
           {this.state.elements.map(this.drawElements,this) /*add elements from database*/}

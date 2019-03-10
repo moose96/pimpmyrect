@@ -1,3 +1,4 @@
+@import 'ThemeBase.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 
 .element
@@ -36,6 +37,7 @@
 	{
 		color: map-get($theme-colors,"primary");
 	}
+	
 }
 
 .elementInfo
@@ -64,4 +66,12 @@
 	opacity: 0;
 	transition: opacity 0.5s;
 	cursor: default;
+}
+
+@media (hover: none)
+{
+	.hidden
+	{
+		opacity: 1;
+	}
 }

@@ -109,9 +109,14 @@ export function NewGalleryElement(props) {
     
     return (
       <div className="galleryElement">
-        <Element className="new" key={0} id={0} style={newElementStyle} onClick={props.onClick} disableControls={true}>
-          <SvgPlusItem />
-        </Element>
+        <div className="elementWrapper">
+          <Element className="new" key={0} id={0} style={newElementStyle} onClick={props.onClick} disableControls={true}>
+            <SvgPlusItem />
+          </Element>
+        </div>
+        <div className="galleryElementInfo">
+            <h3><a href="" id={0} name="listLink" onClick={props.onClick}>Add new element</a></h3>
+        </div>
       </div>
     );
 }

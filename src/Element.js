@@ -26,7 +26,7 @@ class Element extends React.Component {
         id: this.props.id
       }
     }).then((response) => {
-      console.log(response);
+      console.log(response.data);
     }).catch((response) =>{
       console.log(response);
     });
