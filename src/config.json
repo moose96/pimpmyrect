@@ -68,7 +68,7 @@
 			"name":"By border radius descending"
 		}
 	],
-	"dbServicePath": "http://localhost/learning/react-zadanka/pimpmyrect/public/dbservice",
+	"dbServicePath": "/dbservice",
 	"colorsTable":
 	[
 		{
