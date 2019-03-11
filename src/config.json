@@ -68,7 +68,7 @@
 			"name":"By border radius descending"
 		}
 	],
-	"dbServicePath": "/dbservice",
+	"dbServicePath": "http://localhost:3030/elements/",
 	"colorsTable":
 	[
 		{

@@ -158,9 +158,13 @@ header
 			}
 		}
 		
-		.toolbar .dropdown-toggle
+		.toolbar
 		{
-			width: 110px;
+			margin: 0 0 0 0;
+			.dropdown-toggle
+			{
+				width: 110px;
+			}
 		}
 	}
 }

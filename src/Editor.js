@@ -45,26 +45,27 @@ class Editor extends Component {
   
   handleSubmitEvent(e) {
     const axios = require('axios');
-    let action = '';
-    var params = {};
+
     
     if(this.state.currentId===0) {
-      action = 'add';
-      params = this.state.style;
+      axios.post(CONFIG.dbServicePath, {
+        style: this.state.style
+      }).then((response) => {
+        console.log(response.data);
+      }).catch((response) => {
+        console.log(response);
+      });
     } else {
-      action = 'update';
-      params = Object.assign({selected: false},this.state.style);
-      params.id = this.state.currentId;
+      axios.put(CONFIG.dbServicePath+this.state.currentId, {
+        id: this.state.currentId,
+        style: this.state.style
+      }).then((response) => {
+        console.log(response.data);
+      }).catch((response) => {
+        console.log(response);
+      });
     }
     
-	  axios.get(CONFIG.dbServicePath+'?'+action, {
-      params: params
-    }).then((response) => {
-      console.log(response.data);
-    }).catch((response) => {
-      console.log(response);
-    });
-	  
 	  this.props.onClose(e);
 	  e.preventDefault();
 	  

@@ -7,7 +7,7 @@
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "color": "^3.1.0",
-    "json-loader": "^0.5.7",
+    "json-server": "0.14.2",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.5",
@@ -18,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+	"json": "json-server -w -p 3030 public/data/pimpmyrect.json"
   },
   "eslintConfig": {
     "extends": "react-app"

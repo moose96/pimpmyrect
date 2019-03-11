@@ -34,9 +34,9 @@ class Gallery extends React.Component {
     const axios = require('axios');
 		/*elements read from database: */
 		
-		axios.get('/data/pimpmyrect.json')
+		axios.get(CONFIG.dbServicePath)
 		.then((response) => {
-      console.log(response.data);
+      console.log(response.headers.link);
       
       let _elements = response.data;
       _elements.sort((a,b) => {

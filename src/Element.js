@@ -21,11 +21,8 @@ class Element extends React.Component {
 	handleCloseClick(e) {
     const axios = require('axios');
     
-    axios.get(CONFIG.dbServicePath+'?delete', {
-      params: {
-        id: this.props.id
-      }
-    }).then((response) => {
+    axios.delete(CONFIG.dbServicePath+this.props.id)
+    .then((response) => {
       console.log(response.data);
     }).catch((response) =>{
       console.log(response);
